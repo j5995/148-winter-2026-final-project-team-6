@@ -306,15 +306,21 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
     # load and configure model for inference
     #
     if model_path:
+        if model_path.endswith(".hef"):
+            from hailo_runner import HailoModelRunner
+            kl = HailoModelRunner(model_path)
+        else:
         # If we have a model, create an appropriate Keras part
-        kl = dk.utils.get_model_by_type(model_type, cfg)
+            kl = dk.utils.get_model_by_type(model_type, cfg)
 
         #
         # get callback function to reload the model
         # for the configured model format
         #
         model_reload_cb = None
-        if '.h5' in model_path or '.trt' in model_path or '.tflite' in \
+        if model_path.endswith('.hef'):
+             pass  # HailoModelRunner already created above
+        elif '.h5' in model_path or '.trt' in model_path or '.tflite' in \
             model_path or '.savedmodel' in model_path or '.pth' in model_path:
             # load the whole model with weigths, etc
             load_model(kl, model_path)
@@ -323,11 +329,6 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
                 load_model(kl, filename)
 
             model_reload_cb = reload_model
-
-        elif model_path.endswith(".hef"):
-            from hailo_runner import HailoModelRunner
-            kl = HailoModelRunner(model_path)
-
 
         elif '.json' in model_path:
             # when we have a .json extension
@@ -406,20 +407,16 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
         # Add image transformations like crop or trapezoidal mask
         # so they get applied at inference time in autopilot mode.
         #
-        if hasattr(cfg, 'TRANSFORMATIONS') or hasattr(cfg, 'POST_TRANSFORMATIONS'):
-            from donkeycar.parts.image_transformations import ImageTransformations
-            #
-            # add the complete set of pre and post augmentation transformations
-            #
-            logger.info(f"Adding inference transformations")
-            V.add(ImageTransformations(cfg, 'TRANSFORMATIONS',
-                                       'POST_TRANSFORMATIONS'),
-                  inputs=['cam/image_array'], outputs=['cam/image_array_trans'])
-            inputs = ['cam/image_array_trans'] + inputs[1:]
-
-        if model_path.endswith(".hef"):
-            V.add(kl, inputs=['cam/image_array'], outputs=['pilot/angle', 'pilot/throttle'], run_condition='run_pilot')
+        if model_path and model_path.endswith(".hef"):
+          V.add(kl, inputs=['cam/image_array'], outputs=['pilot/angle', 'pilot/throttle'], run_condition='run_pilot')
         else:
+            if hasattr(cfg, 'TRANSFORMATIONS') or hasattr(cfg, 'POST_TRANSFORMATIONS'):
+                from donkeycar.parts.image_transformations import ImageTransformations
+                logger.info(f"Adding inference transformations")
+                V.add(ImageTransformations(cfg, 'TRANSFORMATIONS',
+                                   'POST_TRANSFORMATIONS'),
+                    inputs=['cam/image_array'], outputs=['cam/image_array_trans'])
+                inputs = ['cam/image_array_trans'] + inputs[1:]
             V.add(kl, inputs=inputs, outputs=outputs, run_condition='run_pilot')
 
 
@@ -505,6 +502,10 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
         types += ['int', 'str', 'vector']
 
     if cfg.CAMERA_TYPE == "D435" and cfg.REALSENSE_D435_DEPTH:
+        inputs += ['cam/depth_array']
+        types += ['gray16_array']
+
+    if cfg.CAMERA_TYPE == "OAKD" and cfg.OAKD_DEPTH:
         inputs += ['cam/depth_array']
         types += ['gray16_array']
 
@@ -882,6 +883,17 @@ def add_camera(V, cfg, camera_type):
                        'imu/acl_x', 'imu/acl_y', 'imu/acl_z',
                        'imu/gyr_x', 'imu/gyr_y', 'imu/gyr_z'],
               threaded=True)
+        
+    elif cfg.CAMERA_TYPE == "OAKD":
+        from donkeycar.parts.oak_d import OakD
+        cam = OakD(
+            enable_rgb=cfg.OAKD_RGB,
+            enable_depth=cfg.OAKD_DEPTH,
+            device_id=cfg.OAKD_ID)
+        V.add(cam, inputs=[],
+              outputs=['cam/image_array', 'cam/depth_array'],
+              threaded=True)
+
     else:
         inputs = []
         outputs = ['cam/image_array']
