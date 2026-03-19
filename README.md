@@ -1,7 +1,8 @@
-# <div align="center">Jetson Nano/NX vs. Raspberry Pi 5 Performance</div>
+# <div align="center">DonkeyCar Deep Learning AI Hat Acceleration
+</div>
 ![UCSD Logo](https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4/blob/8634e398e3909286a9dbfa0fc6082155198b7809/image/UCSDLogo_JSOE_BlueGold_0_0.png)
 ### <div align="center">ECE MAE 148 Final Project</div>
-#### <div align="center"> Team 4 Winter 2025 </div>
+#### <div align="center"> Team 6 Winter 2026 </div>
 <p align = center>
   <img width="800" alt="Car Picture" src="image/car_picture1.jpeg">
 </p>
@@ -11,45 +12,35 @@
   <ol>
     <li><a href="#team-members">Team Members</a></li>
     <li><a href="#abstract">Abstract</a></li>
-    <li><a href="#what-we-promised">Promises and Stretch Goals</a></li>
-    <li><a href="#hardware">Hardware</a></li>
-    <li><a href="#software">Software</a></li>
+    <li><a href="#promises-and-bonus-goals">Promises and Bonus Goals</a></li>
     <li><a href="#final-metrics">Final Metrics</a></li>
     <li><a href="#accomplishments">Accomplishments</a></li>
     <li><a href="#challenges">Challenges</a></li>
     <li><a href="#documentation">Documentation</a></li>
-    <li><a href="#Potential-Improvements">Potential Improvements</a></li>
-    <li><a href="#Course-Deliverables">Course Deliverables</a></li>
-  </ol>
+    <li><a href="#potential-improvements">Potential Improvements</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+</ol>
 <hr>
 
 ## Team Members
-Jake Honma - MAE Controls & Robotics - Class of 2026 - jhonma@ucsd.edu
+Bryan Lu (ECE) - bklu@ucsd.edu
 
-Harsh Salva - MAE Controls & Robotics - Class of 2026 - hsavla@ucsd.edu
+David Shimizu (MAE) - dkshimizu@ucsd.edu
 
-Andrew Dunker - ECE ML & Controls - Class of 2025 - adunker@ucsd.edu
+Eric Wang (CSE) - ejw001@ucsd.edu
 
-Jingli Zhou - Math/CS- Class of 2027 - jiz228@ucsd.edu
+Ulises Urrutia (MAE) - uurrutia@ucsd.edu
+
 <hr>
 
 ## Abstract
-Our project aimed to measure the performance of deep-learning models trained on DonkeyCar on the Jetson Nano, Jetson Xavier NX, and the Raspberry Pi 5 (w/ & w/o Hailo AIHAT+).
+Our project aimed to implement the Hailo AiHat+ with the Raspberry Pi 5 as a neural network accelerator, speeding up a variety of tasks including deep learning, image recognition, and machine learning.
 <hr>
 
-## Promises and Stretch Goals
+## Promises and Bonus Goals
 
 ### Promised
 - Benchmarked performance for:
-
-  - **Jetson Nano w/ Tensorflow/TensorRT**  
-    <br>  
-    <img width="400" alt="Nano Picture" src="https://m.media-amazon.com/images/I/71alMFID+vL._AC_UF894,1000_QL80_.jpg">
-
-  - **Jetson NX w/ Tensorflow/TensorRT**  
-    <br>  
-    <img width="400" alt="NX Picture" src="https://m.media-amazon.com/images/I/71TiOw6fSuL._AC_UF894,1000_QL80_.jpg">
-
   - **RPI w/ Tensorflow/HailoRT**  
     <br>  
     <img width="400" alt="RPI Picture" src="https://botland.store/img/art/inne/24986_3a.jpg">
@@ -58,25 +49,12 @@ Our project aimed to measure the performance of deep-learning models trained on 
 
 
 
-Stretch Goals
+Bonus Goals
 * Benchmarked performance for models with different resolutions
-* Fully integrate the Hailo Model with DonkeyCar
+* Full integration and usage with a deep learning problem, such as object avoidance
 
 <hr>
 
-## Hardware
-<p align = center>
-  <img width="800" alt="Hardware Table" src="image/hardware.png">
-</p>
-
-<hr>
-
-## Software
-<p align = center>
-  <img width="800" alt="Software Table" src="image/software.png">
-</p>
-
-<hr>
 
 ## Final Metrics
 <p align = center>
@@ -86,24 +64,19 @@ Stretch Goals
 <hr>
 
 ## Accomplishments
-- Document the process for setting up DonkeyCar on the RPI 5.
-- Document the process for converting linear (.h5) models into TensorRT directories and Hailo Executable Files (.hef through AIHAT+).
-- Benchmarked performance for 160x120 resolution model across all hardware.
 - Load and integrate Hailo Executable Files (.hef) into DonkeyCar.
-- Create a .h5 to .hef converter in Python
+- Optimize .h5 to .hef converter
+- Benchmarked performance for 160x120 resolution model.
+
 <hr>
 
 ## Challenges
-- Going into the project our Jetson SD card was corrupted. Initially, we used a backup image, but this was using a lower version JetPack that did not allow us to test models. We then had to completely reflash our SD card, reinstall all the dependencies, and setup up DonkeyCar again.
-- There is out-of-date documentation for converting linear models to utilize TensorRT GPU acceleration. This needed to be updated and varied based on different dependencies across the Jetson Nano & Jetson NX.
-- Without GPU access in a previously set-up docker container, TensorRT conversion could not be completed. 
-- Due to the recency of which Hailo Executable Files were introduced and the limited documentation, attempting to integrate .hef files into DonkeyCar was difficult.
-- We could not physically test the performance of models through manage.py drive due to VESC issues at low speeds.
-- Raspberry Pi 5 requires more power to run with the AI Hat+ than we were able to provide with the soldered on USB-C connection from the DC-DC converter on our car.
-
+- Understanding what we needed to do and what was previously implemented was our main hurdle. Since the codebase is relatively large, understanding what code we needed to change required a lot of time.
+- From our research, there has been no changes or additions to the compiler that is needed to convert our files to .hef, so we still needed to use and optimize the scripts implemented by previous year's.
+- Power was a weird issue since the AI Hat+ with the RPI5 required a 5A DC/DC converter, which we were able to get later on
+- Without GPU access in a previously set-up docker container, TensorRT conversion could not be completed.
+- Similar to last year's group, we had issues with the VESC operating at low speeds.
 <hr>
-
-## 
 
 ## Documentation
 - [TensorRT Directory Conversion](https://docs.google.com/document/d/1uFYIIE-uktmeWYbOzpLOD6yCFHX5uv2XQ3kKLQtFRs0/edit?usp=sharing)
@@ -114,18 +87,14 @@ Stretch Goals
 <hr>
 
 ## Potential Improvements
-- Finish optimizing the integration of Hailo in DonkeyCar
-  - Though we were able to get a .hef file to run in DonkeyCar, based on the results and what we expected, the integration could be performed more efficiently. Although we did make a more efficient integration, this persistent model integration remains untested at this point.
-- Test Models at Different Resolutions
-  - Test and optimize models based on OAKD lite resolution and hardware (Jetson vs. Raspberry Pi 5) to find the highest-performing resolutions for deep learning.
-- Continue to Optimize DonkeyCar Training
-  - Finish optimizing memory management to allow training of larger resolution models
-
-
-## Course Deliverables
-- [Autonomous Laps](https://www.youtube.com/watch?v=mdhzcTpqjOU)
-- [GPS Laps](https://www.youtube.com/watch?v=Q9K-zgcOB_M)
-- [OpenCV Laps](https://www.youtube.com/watch?si=N4yd2DVbfe8NtFZ2&v=eWItPylQU4o&feature=youtu.be)
-- [Final Presentation Slides](https://docs.google.com/presentation/d/1YaHtMM433_lcRRZqx4on65JFk8WVf2HLRQRkMYOuo30/edit?usp=sharing)
-
+- Test Models at Different Resolutions and Functions
+  - Test and optimize models based on OAKD lite resolution to find the highest-performing resolutions for deep learning.
+  - Test and optimize models based on deep learning objectives to test real-world applications for future projects.
+- Tweak throttle and steering values
+  - We manually scaled down the throttle and steering to stop it from being too high, but the issue most likely lies within the conversion
+- Integration with OAKD camera
+  - Since the camera has it's own computer vision functions, we can use it to handle feature abstraction and the AI Hat+ to handle inferences, with the RPI5 as the center module that makes decisions
 <hr>
+
+## Acknowledgements
+Documentation and Project referenced and continued heavily from [Team 4 - Winter 2024](https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4)
