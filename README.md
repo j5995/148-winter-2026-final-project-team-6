@@ -1,9 +1,11 @@
-# <div align="center">DonkeyCar Deep Learning AI Hat Acceleration
-</div>
-![UCSD Logo](https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4/blob/8634e398e3909286a9dbfa0fc6082155198b7809/image/UCSDLogo_JSOE_BlueGold_0_0.png)
-### <div align="center">ECE MAE 148 Final Project</div>
-#### <div align="center"> Team 6 Winter 2026 </div>
-<p align = center>
+<h1 align="center">DonkeyCar Deep Learning AI Hat Acceleration</h1>
+
+<p align="center">
+  <img src="https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4/raw/8634e398e3909286a9dbfa0fc6082155198b7809/image/UCSDLogo_JSOE_BlueGold_0_0.png" width="400" alt="UCSD Logo">
+</p>
+
+<h3 align="center">ECE MAE 148 Final Project</h3>
+<h4 align="center">Team 6 Winter 2026</h4>
   <img width="800" alt="Car Picture" src="image/car_picture1.jpeg">
 </p>
 
@@ -49,7 +51,7 @@ Our project aimed to implement the Hailo AiHat+ with the Raspberry Pi 5 as a neu
 
 
 
-Bonus Goals
+### Bonus Goals
 * Benchmarked performance for models with different resolutions
 * Full integration and usage with a deep learning problem, such as object avoidance
 
@@ -57,16 +59,23 @@ Bonus Goals
 
 
 ## Final Metrics
-<p align = center>
-  <img width="800" alt="Final Metrics" src="image/metrics.png">
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bf182d22-419b-4f41-bb29-28c3433b7730" width="900" alt="Final Metrics">
+</p>
 </p>
 
-<hr>
+
+
+
+
+
+
 
 ## Accomplishments
 - Load and integrate Hailo Executable Files (.hef) into DonkeyCar.
-- Optimize .h5 to .hef converter
+- Optimize .hef inference pipeline from ~300 FPS to ~2100 FPS
 - Benchmarked performance for 160x120 resolution model.
+- Car runs with .hef model in DonkeyCar.
 
 <hr>
 
@@ -79,8 +88,8 @@ Bonus Goals
 <hr>
 
 ## Documentation
-- [TensorRT Directory Conversion](https://docs.google.com/document/d/1uFYIIE-uktmeWYbOzpLOD6yCFHX5uv2XQ3kKLQtFRs0/edit?usp=sharing)
-- [RPI Setup & AIHAT+ Benchmarking](https://docs.google.com/document/d/1QD8mm4k70a3tMuctATGWsUEb5U5Y7lgBpjXv3FvxDJg/edit?usp=sharing)
+- [Hailo AI Hat+ Setup and Model Conversion Guide](https://docs.google.com/document/d/1MRzc6OT8vrefWFaT8_mfcn75FXvgug4Jw4WXdJh5Gkc/edit?usp=sharing)
+- [Documentation from previous team](https://docs.google.com/document/d/1QD8mm4k70a3tMuctATGWsUEb5U5Y7lgBpjXv3FvxDJg/edit?usp=sharing)
 
   
 
@@ -97,4 +106,4 @@ Bonus Goals
 <hr>
 
 ## Acknowledgements
-Documentation and Project referenced and continued heavily from [Team 4 - Winter 2024](https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4)
+Documentation and Project referenced and continued heavily from [Team 4 - Winter 2025](https://github.com/UCSD-ECEMAE-148/148-winter-2025-final-project-team-4)
