@@ -72,10 +72,11 @@ Our project aimed to implement the Hailo AiHat+ with the Raspberry Pi 5 as a neu
 
 
 ## Accomplishments
-- Load and integrate Hailo Executable Files (.hef) into DonkeyCar.
+- Load and integrate Hailo Executable Files (.hef) into DonkeyCar
 - Optimize .hef inference pipeline from ~300 FPS to ~2100 FPS
-- Benchmarked performance for 160x120 resolution model.
-- Car runs with .hef model in DonkeyCar.
+- Benchmarked performance for 160x120 resolution model
+- Car drives autonomously with the .hef model on the AI HAT+
+- Created step-by-step documentation for AI HAT+ setup, model conversions, benchmarking, and autonomous driving
 
 <hr>
 
