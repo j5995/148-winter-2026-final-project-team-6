@@ -91,7 +91,7 @@ Our project aimed to implement the Hailo AiHat+ with the Raspberry Pi 5 as a neu
 ## Documentation
 - [Hailo AI Hat+ Setup and Model Conversion Guide](https://docs.google.com/document/d/1MRzc6OT8vrefWFaT8_mfcn75FXvgug4Jw4WXdJh5Gkc/edit?usp=sharing)
 - [Documentation from previous team](https://docs.google.com/document/d/1QD8mm4k70a3tMuctATGWsUEb5U5Y7lgBpjXv3FvxDJg/edit?usp=sharing)
-
+- [RP5 cover mechanical drawing](https://github.com/j5995/148-winter-2026-final-project-team-6/blob/1d88f50f7b7d497eb59dd93447493ef3c77e744b/RP5cover/PI5shell.pdf) [STL](https://github.com/j5995/148-winter-2026-final-project-team-6/blob/1d88f50f7b7d497eb59dd93447493ef3c77e744b/RP5cover/PI5shell.stl) [Fusion.f3d](https://github.com/j5995/148-winter-2026-final-project-team-6/blob/1d88f50f7b7d497eb59dd93447493ef3c77e744b/RP5cover/PI5shell.f3d)
   
 
 <hr>
