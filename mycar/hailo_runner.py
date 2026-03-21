@@ -53,12 +53,15 @@ class HailoModelRunner:
         infer_results = self.infer_pipeline.infer(self.input_data)
 
         if self.has_two_outputs:
-            steering = float(infer_results[self.output_vstream_infos[0].name][0, 0])
-            throttle = float(infer_results[self.output_vstream_infos[1].name][0, 0])
+            steering = float(infer_results[self.output_vstream_infos[1].name][0, 0])
+            throttle = float(infer_results[self.output_vstream_infos[0].name][0, 0])
+
+            steering = max(-1.0, min(1.0, steering / 80.0))
+            throttle = max(0.0, min(1.0, throttle / 25.0))
         else:
             steering = float(infer_results[self.output_vstream_infos[0].name][0, 0])
             throttle = compute_throttle(steering)
-
+        print(f"steering={steering:.3f} throttle={throttle:.3f}", flush=True)
         return steering, throttle
 
     def __del__(self):
@@ -71,3 +74,4 @@ class HailoModelRunner:
                 self.device.release()
         except Exception as e:
             print(f"[HailoModelRunner] Warning during cleanup: {e}")
+        
