@@ -6,7 +6,7 @@
 
 <h3 align="center">ECE MAE 148 Final Project</h3>
 <h4 align="center">Team 6 Winter 2026</h4>
-  <img width="800" alt="Car Picture" src="image/car_picture1.jpeg">
+  <img width="800" alt="Car Picture" src="images/team6car.png">
 </p>
 
 
